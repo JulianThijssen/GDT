@@ -196,3 +196,8 @@ Vector3f pow(const Vector3f& v, float exponent)
     return Vector3f(powf(v.x, exponent), powf(v.y, exponent), powf(v.z, exponent));
 }
 
+std::ostream& operator<<(std::ostream& os, const Vector3f& v)
+{
+    os << '(' << v.x << ", " << v.y << ", " << v.z << ')';
+    return os;
+}
