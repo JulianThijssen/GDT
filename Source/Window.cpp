@@ -3,9 +3,32 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include <iostream>
+
 void onError(int error, const char* description)
 {
-    fprintf(stderr, "Error: %s\n", description);
+    switch (error) {
+    case GLFW_NOT_INITIALIZED:
+        std::cerr << "A window function was called while the window was not initialized" << std::endl;
+    case GLFW_NO_CURRENT_CONTEXT:
+        std::cerr << "A window function was called that depends on OpenGL, but no GL context is set" << std::endl;
+    case GLFW_INVALID_ENUM:
+        std::cerr << "A window function was called with an invalid argument enum" << std::endl;
+    case GLFW_INVALID_VALUE:
+        std::cerr << "A window function was called with an invalud argument value" << std::endl;
+    case GLFW_OUT_OF_MEMORY:
+        std::cerr << "A window function caused a failed memory allocation" << std::endl;
+    case GLFW_API_UNAVAILABLE:
+        std::cerr << "The window could not find support for the requested API" << std::endl;
+    case GLFW_VERSION_UNAVAILABLE:
+        std::cerr << "The requested OpenGL version is not available on this machine" << std::endl;
+    case GLFW_PLATFORM_ERROR:
+        std::cerr << "A window function caused a platform error" << std::endl;
+    case GLFW_FORMAT_UNAVAILABLE:
+        std::cerr << "The requested pixel format is not supported or the contents of the clipboard could not be converted to the requested format" << std::endl;
+    }
+}
+
 void onKeyEvent(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
     Window* w = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
