@@ -15,6 +15,7 @@ set(BASE
     ${DIR}/Math.h
     ${DIR}/Math.cpp
     ${DIR}/File.h
+    ${DIR}/Input.h
     ${DIR}/Exception.h
     ${DIR}/glad.c
     PARENT_SCOPE
