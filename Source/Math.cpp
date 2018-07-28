@@ -2,6 +2,11 @@
 
 namespace Math
 {
+    float min(float f1, float f2)
+    {
+        return f1 < f2 ? f1 : f2;
+    }
+
     float max(float f1, float f2)
     {
         return f1 > f2 ? f1 : f2;
