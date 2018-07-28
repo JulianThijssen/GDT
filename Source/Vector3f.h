@@ -39,6 +39,8 @@ public:
     Vector3f operator-(const float f);
     Vector3f operator*(const float f);
     Vector3f operator/(const float f);
+
+    Vector3f operator-() const;
 };
 
 float dot(const Vector3f& v1, const Vector3f& v2);

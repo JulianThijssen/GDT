@@ -166,6 +166,11 @@ Vector3f Vector3f::operator/(const float f)
     return Vector3f(x / f, y / f, z / f);
 }
 
+Vector3f Vector3f::operator-() const
+{
+    return Vector3f(-x, -y, -z);
+}
+
 float dot(const Vector3f& v1, const Vector3f& v2)
 {
     return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
