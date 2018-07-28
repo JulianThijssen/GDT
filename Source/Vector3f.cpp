@@ -190,3 +190,9 @@ Vector3f normalize(const Vector3f& v)
 
     return Vector3f(v.x / l, v.y / l, v.z / l);
 }
+
+Vector3f pow(const Vector3f& v, float exponent)
+{
+    return Vector3f(powf(v.x, exponent), powf(v.y, exponent), powf(v.z, exponent));
+}
+
