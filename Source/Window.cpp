@@ -88,6 +88,14 @@ void Window::destroy()
 
     glfwTerminate();
 }
+void Window::lockCursor(bool lock)
+{
+    if (lock)
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    else
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+}
+
 void Window::addKeyListener(KeyListener* keyListener)
 {
     keyListeners.push_back(keyListener);

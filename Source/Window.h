@@ -38,6 +38,8 @@ public:
     void close();
     void destroy();
 
+    void lockCursor(bool lock);
+
     void addKeyListener(KeyListener* keyListener);
     void addMouseMoveListener(MouseMoveListener* mouseMoveListener);
     void addMouseClickListener(MouseClickListener* mouseClickListener);
