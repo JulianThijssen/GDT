@@ -1,6 +1,8 @@
 #include "Shader.h"
 
 #include "File.h"
+#include "Vector3f.h"
+#include "Matrix4f.h"
 
 #include <sstream>
 
@@ -258,7 +260,57 @@ std::string ShaderProgram::getInfoLog()
     return std::string(log.begin(), log.end());
 }
 
-void ShaderProgram::uniform1i(const char* location, int i)
+GLint ShaderProgram::getUniformLocation(const char* name)
 {
-    glUniform1i(glGetUniformLocation(_handle, location), i);
+    return glGetUniformLocation(_handle, name);
+}
+
+void ShaderProgram::uniform1i(const char* name, int i)
+{
+    glUniform1i(glGetUniformLocation(_handle, name), i);
+}
+
+void ShaderProgram::uniform1iv(const char* name, int count, int* values)
+{
+    glUniform1iv(glGetUniformLocation(_handle, name), count, (GLint*) values);
+}
+
+void ShaderProgram::uniform2i(const char* name, int v0, int v1)
+{
+    glUniform2f(getUniformLocation(name), v0, v1);
+}
+
+void ShaderProgram::uniform1f(const char* name, float value)
+{
+    glUniform1f(getUniformLocation(name), value);
+}
+
+void ShaderProgram::uniform1fv(const char* name, int count, float* values)
+{
+    glUniform1fv(getUniformLocation(name), count, (GLfloat*) values);
+}
+
+void ShaderProgram::uniform2f(const char* name, float v0, float v1)
+{
+    glUniform2f(getUniformLocation(name), v0, v1);
+}
+
+void ShaderProgram::uniform3f(const char* name, float v0, float v1, float v2)
+{
+    glUniform3f(getUniformLocation(name), v0, v1, v2);
+}
+
+void ShaderProgram::uniform3f(const char* name, Vector3f& v)
+{
+    glUniform3f(getUniformLocation(name), v.x, v.y, v.z);
+}
+
+void ShaderProgram::uniform3fv(const char* name, int count, Vector3f* values)
+{
+    glUniform3fv(getUniformLocation(name), count, (GLfloat*) values);
+}
+
+void ShaderProgram::uniformMatrix4f(const char* name, Matrix4f& m)
+{
+    glUniformMatrix4fv(getUniformLocation(name), 1, false, m.toArray());
 }
