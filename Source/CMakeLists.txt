@@ -8,6 +8,8 @@ set(BASE
     ${DIR}/Texture.h
     ${DIR}/Texture.cpp
     ${DIR}/TextureUnit.h
+    ${DIR}/Vector2f.h
+    ${DIR}/Vector2f.cpp
     ${DIR}/Vector3f.h
     ${DIR}/Vector3f.cpp
     ${DIR}/Matrix4f.h
