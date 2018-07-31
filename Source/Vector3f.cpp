@@ -1,5 +1,6 @@
 #include "Vector3f.h"
 
+#include "Math.h"
 #include <cmath>
 
 Vector3f::Vector3f()
@@ -194,6 +195,16 @@ Vector3f normalize(const Vector3f& v)
 Vector3f pow(const Vector3f& v, float exponent)
 {
     return Vector3f(powf(v.x, exponent), powf(v.y, exponent), powf(v.z, exponent));
+}
+
+float min(const Vector3f& v)
+{
+    return Math::min(v.x, Math::min(v.y, v.z));
+}
+
+float max(const Vector3f& v)
+{
+    return Math::max(v.x, Math::max(v.y, v.z));
 }
 
 std::ostream& operator<<(std::ostream& os, const Vector3f& v)

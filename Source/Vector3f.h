@@ -49,5 +49,7 @@ float dot(const Vector3f& v1, const Vector3f& v2);
 Vector3f cross(const Vector3f& v1, const Vector3f& v2);
 Vector3f normalize(const Vector3f& v);
 Vector3f pow(const Vector3f& v, float exponent);
+float min(const Vector3f& v);
+float max(const Vector3f& v);
 
 std::ostream& operator<<(std::ostream& os, const Vector3f& v);
