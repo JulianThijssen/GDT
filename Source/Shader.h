@@ -15,12 +15,22 @@ struct ShaderLoadingException : public ErrorMessageException
 class Vector3f;
 class Matrix4f;
 
+enum ShaderType
+{
+    VERTEX, FRAGMENT, GEOMETRY
+};
+
 class Shader
 {
     friend class ShaderProgram;
 
 public:
-    Shader(GLenum type);
+    /**
+     * Creates a new shader object of the given type
+     *
+     * @param type The type this shader should be
+     */
+    Shader(ShaderType type);
 
     bool isCompiled() const;
 
@@ -32,7 +42,7 @@ public:
 private:
     void create();
 
-    GLenum _type;
+    ShaderType _type;
 
     bool _isCreated;
     bool _isCompiled;

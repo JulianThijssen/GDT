@@ -27,7 +27,7 @@ struct ShaderValidationException : public ErrorMessageException
     { }
 };
 
-Shader::Shader(GLenum type) :
+Shader::Shader(ShaderType type) :
     _type(type),
     _isCreated(false),
     _isCompiled(false),
@@ -54,7 +54,15 @@ bool Shader::loadFromFile(std::string path)
 
 void Shader::create()
 {
-    _handle = glCreateShader(_type);
+    GLenum glType;
+    switch (_type)
+    {
+        case VERTEX: glType = GL_VERTEX_SHADER; break;
+        case FRAGMENT: glType = GL_FRAGMENT_SHADER; break;
+        case GEOMETRY: glType = GL_GEOMETRY_SHADER; break;
+    }
+
+    _handle = glCreateShader(glType);
 
     _isCreated = true;
     _isCompiled = false;
@@ -91,8 +99,8 @@ std::string Shader::getInfoLog()
     std::string prefix;
     switch (_type)
     {
-    case GL_VERTEX_SHADER: prefix = "Vertex shader info log:\n"; break;
-    case GL_FRAGMENT_SHADER: prefix = "Fragment shader info log:\n"; break;
+    case VERTEX: prefix = "Vertex shader info log:\n"; break;
+    case FRAGMENT: prefix = "Fragment shader info log:\n"; break;
     }
 
     GLint logLength;
