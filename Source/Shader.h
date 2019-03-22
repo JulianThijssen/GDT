@@ -6,6 +6,7 @@
 
 #include <string>
 #include <vector>
+#include <unordered_map>
 
 struct ShaderLoadingException : public ErrorMessageException
 {
@@ -93,6 +94,7 @@ private:
 
     std::vector<std::string> errorLog;
     std::vector<Shader> _attachedShaders;
+    std::unordered_map<std::string, int> _locationMap;
 
     GLuint _handle;
 };

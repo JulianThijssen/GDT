@@ -270,22 +270,40 @@ std::string ShaderProgram::getInfoLog()
 
 GLint ShaderProgram::getUniformLocation(const char* name)
 {
-    return glGetUniformLocation(_handle, name);
+    std::unordered_map<std::string, int>::const_iterator it = _locationMap.find(std::string(name));
+    if (it != _locationMap.end()) {
+        return it->second;
+    }
+    else {
+        int location = glGetUniformLocation(_handle, name);
+        _locationMap[std::string(name)] = location;
+        return location;
+    }
 }
 
 void ShaderProgram::uniform1i(const char* name, int i)
 {
-    glUniform1i(glGetUniformLocation(_handle, name), i);
+    glUniform1i(getUniformLocation(name), i);
+}
+
+void ShaderProgram::uniform1ui(const char* name, unsigned int i)
+{
+    glUniform1ui(getUniformLocation(name), i);
 }
 
 void ShaderProgram::uniform1iv(const char* name, int count, int* values)
 {
-    glUniform1iv(glGetUniformLocation(_handle, name), count, (GLint*) values);
+    glUniform1iv(getUniformLocation(name), count, (GLint*) values);
 }
 
 void ShaderProgram::uniform2i(const char* name, int v0, int v1)
 {
-    glUniform2f(getUniformLocation(name), v0, v1);
+    glUniform2i(getUniformLocation(name), v0, v1);
+}
+
+void ShaderProgram::uniform2ui(const char* name, unsigned int v0, unsigned int v1)
+{
+    glUniform2ui(getUniformLocation(name), v0, v1);
 }
 
 void ShaderProgram::uniform1f(const char* name, float value)
@@ -308,7 +326,7 @@ void ShaderProgram::uniform3f(const char* name, float v0, float v1, float v2)
     glUniform3f(getUniformLocation(name), v0, v1, v2);
 }
 
-void ShaderProgram::uniform3f(const char* name, Vector3f& v)
+void ShaderProgram::uniform3f(const char* name, const Vector3f& v)
 {
     glUniform3f(getUniformLocation(name), v.x, v.y, v.z);
 }
@@ -318,7 +336,12 @@ void ShaderProgram::uniform3fv(const char* name, int count, Vector3f* values)
     glUniform3fv(getUniformLocation(name), count, (GLfloat*) values);
 }
 
-void ShaderProgram::uniformMatrix4f(const char* name, Matrix4f& m)
+void ShaderProgram::uniform4f(const char* name, float v0, float v1, float v2, float v3)
+{
+    glUniform4f(getUniformLocation(name), v0, v1, v2, v3);
+}
+
+void ShaderProgram::uniformMatrix4f(const char* name, const Matrix4f& m)
 {
     glUniformMatrix4fv(getUniformLocation(name), 1, false, m.toArray());
 }
