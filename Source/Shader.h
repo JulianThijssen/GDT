@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Exception.h"
-
 #include "OpenGL.h"
 
 #include <string>
@@ -36,10 +35,31 @@ public:
      */
     Shader(ShaderType type);
 
+    /**
+     * Returns whether the shader has compiled successfully.
+     * If this returns false, compile() might not have 
+     * been called yet, or it might have failed.
+     *
+     * @return true if shader compiled successfully
+     */
     bool isCompiled() const;
 
+    /**
+     * Loads shader source from the given file path
+     *
+     * @param path The path of the shader file
+     * @return true if the shader could be loaded from the file
+     */
     bool loadFromFile(std::string path);
+
+    /**
+     * Compiles the shader
+     */
     void compile();
+
+    /**
+     * Frees any GPU handle related this shader
+     */
     void destroy();
 
     std::string getInfoLog();
@@ -72,16 +92,18 @@ public:
     void destroy();
 
     void uniform1i(const char* name, int i);
+    void uniform1ui(const char* name, unsigned int i);
     void uniform1iv(const char* name, int count, int* values);
     void uniform2i(const char* name, int v0, int v1);
+    void uniform2ui(const char* name, unsigned int v0, unsigned int v1);
     void uniform1f(const char* name, float value);
     void uniform1fv(const char* name, int count, float* values);
     void uniform2f(const char* name, float v0, float v1);
     void uniform3f(const char* name, float v0, float v1, float v2);
-    void uniform3f(const char* name, Vector3f& v);
+    void uniform3f(const char* name, const Vector3f& v);
     void uniform3fv(const char* name, int count, Vector3f* values);
-    void uniformMatrix4f(const char* name, Matrix4f& m);
-
+    void uniform4f(const char* name, float v0, float v1, float v2, float v3);
+    void uniformMatrix4f(const char* name, const Matrix4f& m);
 
 private:
     void link();
