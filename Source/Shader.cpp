@@ -60,8 +60,9 @@ void Shader::create()
         case VERTEX: glType = GL_VERTEX_SHADER; break;
         case FRAGMENT: glType = GL_FRAGMENT_SHADER; break;
         case GEOMETRY: glType = GL_GEOMETRY_SHADER; break;
+        case COMPUTE: glType = GL_COMPUTE_SHADER; break;
     }
-
+    
     _handle = glCreateShader(glType);
 
     _isCreated = true;
@@ -100,7 +101,9 @@ std::string Shader::getInfoLog()
     switch (_type)
     {
     case VERTEX: prefix = "Vertex shader info log:\n"; break;
+    case GEOMETRY: prefix = "Geometry shader info log:\n"; break;
     case FRAGMENT: prefix = "Fragment shader info log:\n"; break;
+    case COMPUTE: prefix = "Compute shader info log:\n"; break;
     }
 
     GLint logLength;
@@ -123,33 +126,37 @@ ShaderProgram::ShaderProgram() :
 
 }
 
-void ShaderProgram::loadFromFile(std::string vertexShaderPath, std::string fragmentShaderPath)
+void ShaderProgram::addShader(ShaderType type, std::string path)
 {
+    Shader shader(type);
+
     try
     {
-        create();
+        shader.loadFromFile(path);
+    }
+    catch (const FileNotFoundException& e)
+    {
+        throw ShaderLoadingException(e.what());
+    }
 
-        Shader vertexShader(GL_VERTEX_SHADER);
-        Shader fragmentShader(GL_FRAGMENT_SHADER);
+    attach(shader);
+}
 
-        vertexShader.loadFromFile(vertexShaderPath);
-        attach(vertexShader);
-        fragmentShader.loadFromFile(fragmentShaderPath);
-        attach(fragmentShader);
+void ShaderProgram::build()
+{
+    if (!_isCreated)
+        return;
 
-        vertexShader.compile();
-        fragmentShader.compile();
+    try
+    {
+        for (Shader& shader : _attachedShaders)
+            shader.compile();
 
         link();
         validate();
 
-        vertexShader.destroy();
-        fragmentShader.destroy();
-    }
-    catch (FileNotFoundException& e)
-    {
-        destroy();
-        throw ShaderLoadingException(e);
+        for (Shader& shader : _attachedShaders)
+            shader.destroy();
     }
     catch (ErrorMessageException& e)
     {
@@ -209,7 +216,9 @@ void ShaderProgram::destroy()
     for (Shader& shader: _attachedShaders)
         shader.destroy();
 
-    _attachedShaders.clear();
+    // Crashes for reasons unknown, probably because the shader is
+    // being kept alive by the exception throwing
+    //_attachedShaders.clear();
 
     if (_handle != 0)
     {
@@ -265,7 +274,9 @@ std::string ShaderProgram::getInfoLog()
 
     std::vector<GLchar> log(logLength);
     glGetProgramInfoLog(_handle, logLength, nullptr, log.data());
-    return std::string(log.begin(), log.end());
+    std::string stringLog = std::string(log.begin(), log.end());
+
+    return stringLog;
 }
 
 GLint ShaderProgram::getUniformLocation(const char* name)

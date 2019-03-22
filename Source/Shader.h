@@ -2,7 +2,7 @@
 
 #include "Exception.h"
 
-#include <glad/glad.h>
+#include "OpenGL.h"
 
 #include <string>
 #include <vector>
@@ -18,7 +18,10 @@ class Matrix4f;
 
 enum ShaderType
 {
-    VERTEX, FRAGMENT, GEOMETRY
+    VERTEX,
+    GEOMETRY,
+    FRAGMENT,
+    COMPUTE
 };
 
 class Shader
@@ -55,12 +58,15 @@ class ShaderProgram
 {
 public:
     ShaderProgram();
-    void loadFromFile(std::string vertexShaderPath, std::string fragmentShaderPath);
+
+    void addShader(ShaderType type, std::string path);
+    void build();
     std::string getError();
 
     bool isLinked();
     bool isValidated();
 
+    void create();
     void bind();
     void release();
     void destroy();
@@ -78,7 +84,6 @@ public:
 
 
 private:
-    void create();
     void link();
     void validate();
     void attach(const Shader& shader);
