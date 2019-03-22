@@ -3,6 +3,7 @@
 #include <string>
 
 class Vector3f;
+class Vector4f;
 
 class Matrix4f {
 public:
@@ -29,6 +30,7 @@ public:
     bool operator==(const Matrix4f& m) const;
     bool operator!=(const Matrix4f& m) const;
     Matrix4f operator*(const Matrix4f& m) const;
+    Vector4f operator*(const Vector4f& v) const;
     Vector3f operator*(const Vector3f& m) const;
 private:
     Matrix4f(float m0, float m1, float m2, float m3,

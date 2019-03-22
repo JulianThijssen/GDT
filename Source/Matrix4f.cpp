@@ -182,6 +182,15 @@ Matrix4f Matrix4f::operator*(const Matrix4f& m) const {
     return dest;
 }
 
+Vector4f Matrix4f::operator*(const Vector4f& v) const {
+    Vector4f dest;
+    dest.x = a[0] * v.x + a[4] * v.y + a[8] * v.z + a[12] * v.w;
+    dest.y = a[1] * v.x + a[5] * v.y + a[9] * v.z + a[13] * v.w;
+    dest.z = a[2] * v.x + a[6] * v.y + a[10] * v.z + a[14] * v.w;
+    dest.w = a[3] * v.x + a[7] * v.y + a[11] * v.z + a[15] * v.w;
+    return dest;
+}
+
 Vector3f Matrix4f::operator*(const Vector3f& v) const {
     Vector3f dest;
     dest.x = a[0] * v.x + a[4] * v.y + a[8] * v.z;
