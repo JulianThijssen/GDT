@@ -22,6 +22,8 @@ enum TextureUnit;
 
 class Texture
 {
+    friend class Framebuffer;
+
 public:
     Texture(GLenum target);
     void create();
