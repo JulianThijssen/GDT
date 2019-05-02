@@ -1,6 +1,6 @@
 #pragma once
 
-#include <glad/glad.h>
+#include "OpenGL.h"
 
 typedef unsigned int uint;
 
