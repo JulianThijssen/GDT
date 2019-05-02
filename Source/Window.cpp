@@ -68,10 +68,11 @@ void Window::create(std::string title, uint width, uint height)
 
     glfwSetErrorCallback(onError);
 
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, _glSettings.majorVersion);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, _glSettings.minorVersion);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, _glSettings.coreProfile ? GLFW_OPENGL_CORE_PROFILE : GLFW_OPENGL_COMPAT_PROFILE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
+    glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 
     window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
 
@@ -110,6 +111,11 @@ void Window::destroy()
     glfwDestroyWindow(window);
 
     glfwTerminate();
+}
+
+void Window::setGlVersion(uint majorVersion, uint minorVersion, bool coreProfile)
+{
+    _glSettings = GlSettings{ majorVersion, minorVersion, coreProfile };
 }
 void Window::lockCursor(bool lock)
 {

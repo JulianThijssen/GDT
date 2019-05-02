@@ -24,6 +24,13 @@ private:
     std::string errorMessage;
 };
 
+struct GlSettings
+{
+    uint majorVersion;
+    uint minorVersion;
+    bool coreProfile;
+};
+
 struct GLFWwindow;
 
 class Window
@@ -38,6 +45,7 @@ public:
     void close();
     void destroy();
 
+    void setGlVersion(uint majorVersion, uint minorVersion, bool coreProfile);
     void lockCursor(bool lock);
 
     void addKeyListener(KeyListener* keyListener);
@@ -52,6 +60,8 @@ private:
     GLFWwindow* window;
 
     uint _width, _height;
+
+    GlSettings _glSettings = { 3, 3, true };
 
     // Non-owning lists of input listener pointer references
     std::vector<KeyListener*> keyListeners;
