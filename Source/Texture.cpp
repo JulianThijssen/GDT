@@ -15,10 +15,11 @@ void Texture::create()
     created = true;
 }
 
-void Texture::bind(TextureUnit textureUnit)
+void Texture::bind(TextureUnit textureUnit) const
 {
     if (!isCreated()) return; // TODO Handle
 
+    glActiveTexture(GL_TEXTURE0 + textureUnit);
     glBindTexture(target, handle);
 }
 
@@ -39,11 +40,6 @@ void Texture::setSampling(Sampling minFilter, Sampling magFilter, Sampling mipFi
     }
 }
 
-bool Texture::isCreated()
-{
-    return created;
-}
-
 void Texture::destroy()
 {
     if (!created) return;
@@ -51,6 +47,11 @@ void Texture::destroy()
     glDeleteTextures(1, &handle);
 
     created = false;
+}
+
+bool Texture::isCreated() const
+{
+    return created;
 }
 
 Texture2D::Texture2D()

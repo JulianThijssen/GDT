@@ -27,11 +27,12 @@ class Texture
 public:
     Texture(GLenum target);
     void create();
-    void bind(TextureUnit textureUnit);
+    void bind(TextureUnit textureUnit) const;
     void release();
     void setSampling(Sampling minFilter, Sampling magFilter, Sampling mipFilter = NONE);
-    bool isCreated();
     void destroy();
+
+    bool isCreated() const;
 
 protected:
     bool created = false;
