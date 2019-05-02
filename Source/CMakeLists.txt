@@ -28,6 +28,3 @@ set(BASE
     ${DIR}/OpenGL.h
     PARENT_SCOPE
 )
-
-    PARENT_SCOPE
-)
