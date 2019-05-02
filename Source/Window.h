@@ -46,6 +46,7 @@ public:
     void destroy();
 
     void setGlVersion(uint majorVersion, uint minorVersion, bool coreProfile);
+    void setResizable(bool resizable);
     void lockCursor(bool lock);
 
     void addKeyListener(KeyListener* keyListener);

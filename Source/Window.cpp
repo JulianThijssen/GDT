@@ -117,6 +117,12 @@ void Window::setGlVersion(uint majorVersion, uint minorVersion, bool coreProfile
 {
     _glSettings = GlSettings{ majorVersion, minorVersion, coreProfile };
 }
+
+void Window::setResizable(bool resizable)
+{
+    glfwWindowHint(GLFW_RESIZABLE, resizable);
+}
+
 void Window::lockCursor(bool lock)
 {
     if (lock)
