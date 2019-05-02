@@ -19,6 +19,11 @@ void Framebuffer::bind() const
     glBindFramebuffer(GL_FRAMEBUFFER, _handle);
 }
 
+void Framebuffer::bind(BindTarget bindTarget) const
+{
+    glBindFramebuffer(bindTarget, _handle);
+}
+
 void Framebuffer::release() const
 {
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
