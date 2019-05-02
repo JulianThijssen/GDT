@@ -131,6 +131,11 @@ void Window::lockCursor(bool lock)
         glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 }
 
+void Window::enableVSync(bool enable)
+{
+    glfwSwapInterval(enable ? 1 : 0);
+}
+
 void Window::addKeyListener(KeyListener* keyListener)
 {
     keyListeners.push_back(keyListener);

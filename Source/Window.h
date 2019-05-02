@@ -48,6 +48,7 @@ public:
     void setGlVersion(uint majorVersion, uint minorVersion, bool coreProfile);
     void setResizable(bool resizable);
     void lockCursor(bool lock);
+    void enableVSync(bool enable);
 
     void addKeyListener(KeyListener* keyListener);
     void addMouseMoveListener(MouseMoveListener* mouseMoveListener);
