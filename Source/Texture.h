@@ -45,6 +45,7 @@ class Texture2D : public Texture
 public:
     Texture2D();
     void setData(uint width, uint height, GLint internalFormat, GLenum format, GLenum type, const void* data);
+    void setWrapping(Wrapping sWrapping, Wrapping tWrapping);
 
 private:
     uint width, height;

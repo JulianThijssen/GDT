@@ -68,3 +68,9 @@ void Texture2D::setData(uint width, uint height, GLint internalFormat, GLenum fo
 
     glTexImage2D(target, 0, internalFormat, width, height, 0, format, type, data);
 }
+
+void Texture2D::setWrapping(Wrapping sWrapping, Wrapping tWrapping)
+{
+    glTexParameteri(target, GL_TEXTURE_WRAP_S, sWrapping);
+    glTexParameteri(target, GL_TEXTURE_WRAP_T, tWrapping);
+}
