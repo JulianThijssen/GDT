@@ -31,7 +31,7 @@ public:
     bool operator!=(const Matrix4f& m) const;
     Matrix4f operator*(const Matrix4f& m) const;
     Vector4f operator*(const Vector4f& v) const;
-    Vector3f operator*(const Vector3f& m) const;
+    Vector3f operator*(const Vector3f& v) const;
 private:
     Matrix4f(float m0, float m1, float m2, float m3,
                 float m4, float m5, float m6, float m7,
