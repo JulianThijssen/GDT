@@ -85,10 +85,6 @@ void Matrix4f::scale(float scale) {
     a[9] *= scale;
     a[10] *= scale;
     a[11] *= scale;
-    a[12] *= scale;
-    a[13] *= scale;
-    a[14] *= scale;
-    a[15] *= scale;
 }
 
 void Matrix4f::scale(const Vector3f& scale) {
