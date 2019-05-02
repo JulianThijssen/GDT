@@ -20,7 +20,8 @@ public:
     void scale(float scale);
     void scale(const Vector3f& scale);
     Vector3f transform(const Vector3f& v, int w) const;
-        
+    
+    const float* toArray() const;
     float* toArray();
     std::string str() const;
 

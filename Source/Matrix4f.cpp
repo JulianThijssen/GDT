@@ -112,6 +112,10 @@ Vector3f Matrix4f::transform(const Vector3f& v, int w) const {
     return w == 0 ? dest : dest / dest_w;
 }
 
+const float* Matrix4f::toArray() const {
+    return a;
+}
+
 float* Matrix4f::toArray() {
     return a;
 }
