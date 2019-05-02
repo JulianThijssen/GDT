@@ -88,6 +88,14 @@ void Window::create(std::string title, uint width, uint height)
     // If we failed to create a window, throw an exception
     if (!window)
         throw WindowCreationException("Failed to create GLFW window");
+void Window::pollEvents()
+{
+    glfwPollEvents();
+}
+
+void Window::swapBuffers()
+{
+    glfwSwapBuffers(window);
 }
 
 void Window::update()

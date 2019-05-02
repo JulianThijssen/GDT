@@ -40,6 +40,8 @@ public:
     uint getHeight() const;
 
     void create(std::string title, uint width, uint height);
+    void pollEvents();
+    void swapBuffers();
     void update();
     bool shouldClose();
     void close();
