@@ -3,6 +3,7 @@
 #include "OpenGL.h"
 #include <GLFW/glfw3.h>
 
+#include <algorithm>
 #include <iostream>
 
 void onError(int error, const char* description)
@@ -76,6 +77,12 @@ void Window::create(std::string title, uint width, uint height)
 
     window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
 
+    glfwSetWindowPos(window, 100, 100);
+
+    // If we failed to create a window, throw an exception
+    if (!window)
+        throw WindowCreationException("Failed to create GLFW window");
+
     glfwMakeContextCurrent(window);
     gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
 
@@ -85,9 +92,8 @@ void Window::create(std::string title, uint width, uint height)
     glfwSetKeyCallback(window, onKeyEvent);
     glfwSetCursorPosCallback(window, onMouseMoveEvent);
     glfwSetMouseButtonCallback(window, onMouseButtonEvent);
-    // If we failed to create a window, throw an exception
-    if (!window)
-        throw WindowCreationException("Failed to create GLFW window");
+}
+
 void Window::pollEvents()
 {
     glfwPollEvents();
@@ -111,7 +117,7 @@ bool Window::shouldClose()
 
 void Window::close()
 {
-    glfwSetWindowShouldClose(window, true);
+    glfwSetWindowShouldClose(window, GLFW_TRUE);
 }
 
 void Window::destroy()
@@ -168,7 +174,7 @@ void Window::onKeyInput(int key, int action, int mods)
     {
         if (action == GLFW_PRESS)
             listener->onKeyPressed(key, mods);
-        else
+        else if (action == GLFW_RELEASE)
             listener->onKeyReleased(key, mods);
     }
 }
@@ -187,7 +193,7 @@ void Window::onMouseButton(int button, int action, int mods)
     {
         if (action == GLFW_PRESS)
             listener->onMouseClicked(button, mods);
-        else
+        else if (action == GLFW_RELEASE)
             listener->onMouseReleased(button, mods);
     }
 }
