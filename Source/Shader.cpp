@@ -60,7 +60,9 @@ void Shader::create()
         case VERTEX: glType = GL_VERTEX_SHADER; break;
         case FRAGMENT: glType = GL_FRAGMENT_SHADER; break;
         case GEOMETRY: glType = GL_GEOMETRY_SHADER; break;
+#ifdef OPENGL_VERSION_4_3
         case COMPUTE: glType = GL_COMPUTE_SHADER; break;
+#endif
     }
     
     _handle = glCreateShader(glType);
@@ -103,7 +105,9 @@ std::string Shader::getInfoLog()
     case VERTEX: prefix = "Vertex shader info log:\n"; break;
     case GEOMETRY: prefix = "Geometry shader info log:\n"; break;
     case FRAGMENT: prefix = "Fragment shader info log:\n"; break;
+#ifdef OPENGL_VERSION_4_3
     case COMPUTE: prefix = "Compute shader info log:\n"; break;
+#endif
     }
 
     GLint logLength;
