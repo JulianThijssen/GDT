@@ -6,6 +6,9 @@ set(PROJECT "GDT")
 # Sets the name of the project for our build
 project (${PROJECT})
 
+# Set C++11 as the language standard
+set (CMAKE_CXX_STANDARD 11)
+
 # Set our Includes folder as the place to look for library includes
 include_directories(${CMAKE_SOURCE_DIR}/3rdParty/Includes/)
 
