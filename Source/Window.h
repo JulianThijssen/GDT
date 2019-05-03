@@ -15,7 +15,7 @@ public:
         : errorMessage(errorMessage)
     { }
 
-    virtual const char* what() const throw()
+    const char *what() const noexcept override
     {
         return errorMessage.c_str();
     }

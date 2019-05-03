@@ -14,7 +14,7 @@ struct ErrorMessageException : public std::exception
         : _error(e.what())
     { }
 
-    const char* what() const throw()
+    const char *what() const noexcept override
     {
         return _error.c_str();
     }
