@@ -81,6 +81,7 @@ float& Vector4f::operator[](size_t pos)
     case 1: return y;
     case 2: return z;
     case 3: return w;
+        throw std::out_of_range(std::string("Attempting to access component ") + std::to_string(pos) + std::string(" of Vector4f, only [0-3] are defined."));
     }
 }
 
@@ -92,6 +93,7 @@ const float& Vector4f::operator[](size_t pos) const
     case 1: return y;
     case 2: return z;
     case 3: return w;
+        throw std::out_of_range(std::string("Attempting to access component ") + std::to_string(pos) + std::string(" of Vector4f, only [0-3] are defined."));
     }
 }
 
