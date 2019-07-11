@@ -5,14 +5,17 @@
 
 #include <exception>
 
-struct FileNotFoundException : std::exception
+namespace GDT
 {
-    FileNotFoundException(std::string filePath);
+    struct FileNotFoundException : std::exception
+    {
+        FileNotFoundException(std::string filePath);
 
-    const char* what() const throw();
+        const char* what() const throw();
 
-private:
-    std::string _errorMessage;
-};
+    private:
+        std::string _errorMessage;
+    };
 
-std::string loadFile(std::string filePath);
+    std::string loadFile(std::string filePath);
+}

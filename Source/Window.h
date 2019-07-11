@@ -8,67 +8,70 @@
 
 typedef unsigned int uint;
 
-class WindowCreationException : public std::exception
-{
-public:
-    WindowCreationException(std::string errorMessage)
-        : errorMessage(errorMessage)
-    { }
-
-    const char *what() const noexcept override
-    {
-        return errorMessage.c_str();
-    }
-
-private:
-    std::string errorMessage;
-};
-
-struct GlSettings
-{
-    uint majorVersion;
-    uint minorVersion;
-    bool coreProfile;
-};
-
 struct GLFWwindow;
 
-class Window
+namespace GDT
 {
-public:
-    uint getWidth() const;
-    uint getHeight() const;
+    class WindowCreationException : public std::exception
+    {
+    public:
+        WindowCreationException(std::string errorMessage)
+            : errorMessage(errorMessage)
+        { }
 
-    void create(std::string title, uint width, uint height);
-    void pollEvents();
-    void swapBuffers();
-    void update();
-    bool shouldClose();
-    void close();
-    void destroy();
+        const char *what() const noexcept override
+        {
+            return errorMessage.c_str();
+        }
 
-    void setGlVersion(uint majorVersion, uint minorVersion, bool coreProfile);
-    void setResizable(bool resizable);
-    void lockCursor(bool lock);
-    void enableVSync(bool enable);
+    private:
+        std::string errorMessage;
+    };
 
-    void addKeyListener(KeyListener* keyListener);
-    void addMouseMoveListener(MouseMoveListener* mouseMoveListener);
-    void addMouseClickListener(MouseClickListener* mouseClickListener);
+    struct GlSettings
+    {
+        uint majorVersion;
+        uint minorVersion;
+        bool coreProfile;
+    };
 
-    void onKeyInput(int key, int action, int mods);
-    void onMouseMove(float x, float y);
-    void onMouseButton(int button, int action, int mods);
+    class Window
+    {
+    public:
+        uint getWidth() const;
+        uint getHeight() const;
 
-private:
-    GLFWwindow* window;
+        void create(std::string title, uint width, uint height);
+        void pollEvents();
+        void swapBuffers();
+        void update();
+        bool shouldClose();
+        void close();
+        void destroy();
 
-    uint _width, _height;
+        void setGlVersion(uint majorVersion, uint minorVersion, bool coreProfile);
+        void setResizable(bool resizable);
+        void lockCursor(bool lock);
+        void enableVSync(bool enable);
 
-    GlSettings _glSettings = { 3, 3, true };
+        void addKeyListener(KeyListener* keyListener);
+        void addMouseMoveListener(MouseMoveListener* mouseMoveListener);
+        void addMouseClickListener(MouseClickListener* mouseClickListener);
 
-    // Non-owning lists of input listener pointer references
-    std::vector<KeyListener*> keyListeners;
-    std::vector<MouseMoveListener*> mouseMoveListeners;
-    std::vector<MouseClickListener*> mouseClickListeners;
-};
+        void onKeyInput(int key, int action, int mods);
+        void onMouseMove(float x, float y);
+        void onMouseButton(int button, int action, int mods);
+
+    private:
+        GLFWwindow* window;
+
+        uint _width, _height;
+
+        GlSettings _glSettings = { 3, 3, true };
+
+        // Non-owning lists of input listener pointer references
+        std::vector<KeyListener*> keyListeners;
+        std::vector<MouseMoveListener*> mouseMoveListeners;
+        std::vector<MouseClickListener*> mouseClickListeners;
+    };
+}

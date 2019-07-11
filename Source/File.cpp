@@ -1,30 +1,33 @@
 #include "File.h"
 
-FileNotFoundException::FileNotFoundException(std::string filePath) :
-    _errorMessage(std::string("Failed to find file: ") + filePath)
+namespace GDT
 {
-
-}
-
-const char* FileNotFoundException::what() const throw()
-{
-    return _errorMessage.c_str();
-}
-
-std::string loadFile(std::string filePath)
-{
-    std::ifstream file(filePath);
-    if (file.fail() || !file.is_open())
+    FileNotFoundException::FileNotFoundException(std::string filePath) :
+        _errorMessage(std::string("Failed to find file: ") + filePath)
     {
-        throw FileNotFoundException(filePath);
+
     }
 
-    std::string source;
-    std::string line;
-
-    while (getline(file, line))
+    const char* FileNotFoundException::what() const throw()
     {
-        source.append(line + '\n');
+        return _errorMessage.c_str();
     }
-    return source;
+
+    std::string loadFile(std::string filePath)
+    {
+        std::ifstream file(filePath);
+        if (file.fail() || !file.is_open())
+        {
+            throw FileNotFoundException(filePath);
+        }
+
+        std::string source;
+        std::string line;
+
+        while (getline(file, line))
+        {
+            source.append(line + '\n');
+        }
+        return source;
+    }
 }

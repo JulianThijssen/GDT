@@ -4,21 +4,24 @@
 
 #include <string>
 
-struct ErrorMessageException : public std::exception
+namespace GDT
 {
-    ErrorMessageException(std::string error)
-        : _error(error)
-    { }
-
-    ErrorMessageException(const std::exception& e)
-        : _error(e.what())
-    { }
-
-    const char *what() const noexcept override
+    struct ErrorMessageException : public std::exception
     {
-        return _error.c_str();
-    }
+        ErrorMessageException(std::string error)
+            : _error(error)
+        { }
 
-private:
-    std::string _error;
-};
+        ErrorMessageException(const std::exception& e)
+            : _error(e.what())
+        { }
+
+        const char *what() const noexcept override
+        {
+            return _error.c_str();
+        }
+
+    private:
+        std::string _error;
+    };
+}
