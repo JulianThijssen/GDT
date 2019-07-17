@@ -2,8 +2,10 @@
 
 #include <string>
 
+#ifdef GDT_NAMESPACE
 namespace GDT
 {
+#endif
     class Vector3f;
     class Vector4f;
 
@@ -49,4 +51,8 @@ namespace GDT
     Matrix4f transpose(const Matrix4f& m);
     float determinant(const Matrix4f& m);
     Matrix4f inverse(const Matrix4f& m);
+
+    std::ostream& operator<<(std::ostream& os, const Vector3f& v);
+#ifdef GDT_NAMESPACE
 }
+#endif

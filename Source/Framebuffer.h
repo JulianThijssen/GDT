@@ -5,8 +5,10 @@
 
 #include <vector>
 
+#ifdef GDT_NAMESPACE
 namespace GDT
 {
+#endif
     class Framebuffer
     {
     public:
@@ -47,4 +49,6 @@ namespace GDT
 
         Texture2D _depthTexture;
     };
+#ifdef GDT_NAMESPACE
 }
+#endif

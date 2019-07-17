@@ -7,8 +7,10 @@
 #include <cmath>
 #include <sstream>
 
+#ifdef GDT_NAMESPACE
 namespace GDT
 {
+#endif
     const Matrix4f Matrix4f::IDENTITY = Matrix4f();
     const Matrix4f Matrix4f::BIAS = Matrix4f(0.5f, 0.0f, 0.0f, 0.0f,
         0.0f, 0.5f, 0.0f, 0.0f,
@@ -270,3 +272,15 @@ namespace GDT
         return d;
     }
 }
+
+std::ostream& operator<<(std::ostream& os, const Matrix4f& m)
+{
+    os << "[" << m[0] << ", " << m[4] << ", " << m[8] << ", " << m[12] << "]\n";
+    os << "[" << m[1] << ", " << m[5] << ", " << m[9] << ", " << m[13] << "]\n";
+    os << "[" << m[2] << ", " << m[6] << ", " << m[10] << ", " << m[14] << "]\n";
+    os << "[" << m[3] << ", " << m[7] << ", " << m[11] << ", " << m[15] << "]\n";
+
+    return os;
+#ifdef GDT_NAMESPACE
+}
+#endif

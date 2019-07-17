@@ -2,8 +2,10 @@
 
 #include <cmath>
 
+#ifdef GDT_NAMESPACE
 namespace GDT
 {
+#endif
     Vector2f::Vector2f()
     {
         set(0, 0);
@@ -185,4 +187,6 @@ namespace GDT
         os << '(' << v.x << ", " << v.y << ')';
         return os;
     }
+#ifdef GDT_NAMESPACE
 }
+#endif

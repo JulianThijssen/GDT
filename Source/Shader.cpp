@@ -6,8 +6,10 @@
 
 #include <sstream>
 
+#ifdef GDT_NAMESPACE
 namespace GDT
 {
+#endif
     struct ShaderCompilationException : public ErrorMessageException
     {
         ShaderCompilationException(std::string error)
@@ -62,7 +64,7 @@ namespace GDT
         case VERTEX: glType = GL_VERTEX_SHADER; break;
         case FRAGMENT: glType = GL_FRAGMENT_SHADER; break;
         case GEOMETRY: glType = GL_GEOMETRY_SHADER; break;
-#ifdef OPENGL_VERSION_4_3
+#ifdef GL_VERSION_4_3
         case COMPUTE: glType = GL_COMPUTE_SHADER; break;
 #endif
         }
@@ -362,4 +364,6 @@ namespace GDT
     {
         glUniformMatrix4fv(getUniformLocation(name), 1, false, m.toArray());
     }
+#ifdef GDT_NAMESPACE
 }
+#endif

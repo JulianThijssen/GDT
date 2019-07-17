@@ -2,8 +2,10 @@
 
 #include <iostream>
 
+#ifdef GDT_NAMESPACE
 namespace GDT
 {
+#endif
     class Vector2f
     {
     public:
@@ -52,4 +54,6 @@ namespace GDT
     Vector2f pow(const Vector2f& v, float exponent);
 
     std::ostream& operator<<(std::ostream& os, const Vector2f& v);
+#ifdef GDT_NAMESPACE
 }
+#endif

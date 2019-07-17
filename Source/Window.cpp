@@ -6,8 +6,10 @@
 #include <algorithm>
 #include <iostream>
 
+#ifdef GDT_NAMESPACE
 namespace GDT
 {
+#endif
     void onError(int error, const char* description)
     {
         switch (error) {
@@ -78,6 +80,8 @@ namespace GDT
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 
         window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
+
+        glfwGetFramebufferSize(window, &_fbWidth, &_fbHeight);
 
         glfwSetWindowPos(window, 100, 100);
 
@@ -199,4 +203,6 @@ namespace GDT
                 listener->onMouseReleased(button, mods);
         }
     }
+#ifdef GDT_NAMESPACE
 }
+#endif

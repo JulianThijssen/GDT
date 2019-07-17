@@ -5,8 +5,10 @@
 
 #include <exception>
 
+#ifdef GDT_NAMESPACE
 namespace GDT
 {
+#endif
     struct FileNotFoundException : std::exception
     {
         FileNotFoundException(std::string filePath);
@@ -18,4 +20,6 @@ namespace GDT
     };
 
     std::string loadFile(std::string filePath);
+#ifdef GDT_NAMESPACE
 }
+#endif

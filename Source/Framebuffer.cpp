@@ -4,8 +4,10 @@
 
 #include <iostream>
 
+#ifdef GDT_NAMESPACE
 namespace GDT
 {
+#endif
     void Framebuffer::create()
     {
         glGenFramebuffers(1, &_handle);
@@ -90,4 +92,6 @@ namespace GDT
             }
         }
     }
+#ifdef GDT_NAMESPACE
 }
+#endif

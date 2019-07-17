@@ -1,7 +1,9 @@
 #pragma once
 
+#ifdef GDT_NAMESPACE
 namespace GDT
 {
+#endif
     enum TextureUnit
     {
         TEXTURE0 = 0,
@@ -14,4 +16,6 @@ namespace GDT
         TEXTURE7 = 7,
         TEXTURE8 = 8
     };
+#ifdef GDT_NAMESPACE
 }
+#endif

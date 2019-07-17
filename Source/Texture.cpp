@@ -1,9 +1,9 @@
 #include "Texture.h"
 
-#include "TextureUnit.h"
-
+#ifdef GDT_NAMESPACE
 namespace GDT
 {
+#endif
     Texture::Texture(GLenum target)
         : target(target)
     {
@@ -56,6 +56,11 @@ namespace GDT
         return created;
     }
 
+    GLuint Texture::getHandle() const
+    {
+        return handle;
+    }
+
     Texture2D::Texture2D()
         : Texture(GL_TEXTURE_2D)
     {
@@ -77,4 +82,6 @@ namespace GDT
         glTexParameteri(target, GL_TEXTURE_WRAP_S, sWrapping);
         glTexParameteri(target, GL_TEXTURE_WRAP_T, tWrapping);
     }
+#ifdef GDT_NAMESPACE
 }
+#endif

@@ -2,8 +2,10 @@
 
 #include <iostream>
 
+#ifdef GDT_NAMESPACE
 namespace GDT
 {
+#endif
     class Vector3f;
 
     class Vector4f
@@ -62,4 +64,6 @@ namespace GDT
     float max(const Vector4f& v);
 
     std::ostream& operator<<(std::ostream& os, const Vector4f& v);
+#ifdef GDT_NAMESPACE
 }
+#endif

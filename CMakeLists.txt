@@ -1,6 +1,12 @@
 # Specifies the CMake version we require
 cmake_minimum_required (VERSION 3.1)
 
+option(GDT_NAMESPACE "Encapsulates all classes in GDT namespace" OFF)
+
+if(GDT_NAMESPACE)
+  add_definitions(-DGDT_NAMESPACE)
+endif()
+
 # Store the name of our project in a variable called PROJECT
 set(PROJECT "GDT")
 # Sets the name of the project for our build

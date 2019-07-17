@@ -1,7 +1,9 @@
 #pragma once
 
+#ifdef GDT_NAMESPACE
 namespace GDT
 {
+#endif
     class KeyListener
     {
     public:
@@ -21,4 +23,6 @@ namespace GDT
         virtual void onMouseClicked(int button, int mods) = 0;
         virtual void onMouseReleased(int button, int mods) = 0;
     };
+#ifdef GDT_NAMESPACE
 }
+#endif

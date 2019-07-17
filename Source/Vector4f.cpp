@@ -6,8 +6,10 @@
 #include <string>
 #include <cmath>
 
+#ifdef GDT_NAMESPACE
 namespace GDT
 {
+#endif
     Vector4f::Vector4f()
     {
         set(0, 0, 0, 1);
@@ -257,4 +259,6 @@ namespace GDT
         os << '(' << v.x << ", " << v.y << ", " << v.z << ", " << v.w << ')';
         return os;
     }
+#ifdef GDT_NAMESPACE
 }
+#endif

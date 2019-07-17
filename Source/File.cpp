@@ -1,7 +1,9 @@
 #include "File.h"
 
+#ifdef GDT_NAMESPACE
 namespace GDT
 {
+#endif
     FileNotFoundException::FileNotFoundException(std::string filePath) :
         _errorMessage(std::string("Failed to find file: ") + filePath)
     {
@@ -30,4 +32,6 @@ namespace GDT
         }
         return source;
     }
+#ifdef GDT_NAMESPACE
 }
+#endif

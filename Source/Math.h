@@ -1,7 +1,9 @@
 #pragma once
 
+#ifdef GDT_NAMESPACE
 namespace GDT
 {
+#endif
     namespace Math
     {
         const float PI = 3.14159265359f;
@@ -13,4 +15,6 @@ namespace GDT
         float toDegrees(const float radians);
         float toRadians(const float degrees);
     }
+#ifdef GDT_NAMESPACE
 }
+#endif

@@ -10,8 +10,10 @@ typedef unsigned int uint;
 
 struct GLFWwindow;
 
+#ifdef GDT_NAMESPACE
 namespace GDT
 {
+#endif
     class WindowCreationException : public std::exception
     {
     public:
@@ -66,6 +68,7 @@ namespace GDT
         GLFWwindow* window;
 
         uint _width, _height;
+        int _fbWidth, _fbHeight;
 
         GlSettings _glSettings = { 3, 3, true };
 
@@ -74,4 +77,6 @@ namespace GDT
         std::vector<MouseMoveListener*> mouseMoveListeners;
         std::vector<MouseClickListener*> mouseClickListeners;
     };
+#ifdef GDT_NAMESPACE
 }
+#endif

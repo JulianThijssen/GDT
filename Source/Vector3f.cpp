@@ -3,8 +3,10 @@
 #include "Math.h"
 #include <cmath>
 
+#ifdef GDT_NAMESPACE
 namespace GDT
 {
+#endif
     Vector3f::Vector3f()
     {
         set(0, 0, 0);
@@ -214,4 +216,6 @@ namespace GDT
         os << '(' << v.x << ", " << v.y << ", " << v.z << ')';
         return os;
     }
+#ifdef GDT_NAMESPACE
 }
+#endif

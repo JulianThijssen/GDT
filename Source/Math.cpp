@@ -1,7 +1,9 @@
 #include "Math.h"
 
+#ifdef GDT_NAMESPACE
 namespace GDT
 {
+#endif
     namespace Math
     {
         float min(float f1, float f2)
@@ -24,4 +26,6 @@ namespace GDT
             return degrees * (PI / 180);
         }
     }
+#ifdef GDT_NAMESPACE
 }
+#endif

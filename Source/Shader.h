@@ -7,8 +7,10 @@
 #include <vector>
 #include <unordered_map>
 
+#ifdef GDT_NAMESPACE
 namespace GDT
 {
+#endif
     struct ShaderLoadingException : public ErrorMessageException
     {
         using ErrorMessageException::ErrorMessageException;
@@ -127,4 +129,6 @@ namespace GDT
 
         GLuint _handle;
     };
+#ifdef GDT_NAMESPACE
 }
+#endif

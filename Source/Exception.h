@@ -4,8 +4,10 @@
 
 #include <string>
 
+#ifdef GDT_NAMESPACE
 namespace GDT
 {
+#endif
     struct ErrorMessageException : public std::exception
     {
         ErrorMessageException(std::string error)
@@ -24,4 +26,6 @@ namespace GDT
     private:
         std::string _error;
     };
+#ifdef GDT_NAMESPACE
 }
+#endif

@@ -1,11 +1,15 @@
 #pragma once
 
+#include "TextureUnit.h"
+
 #include "OpenGL.h"
 
 typedef unsigned int uint;
 
+#ifdef GDT_NAMESPACE
 namespace GDT
 {
+#endif
     enum Sampling
     {
         NONE,
@@ -36,6 +40,8 @@ namespace GDT
 
         bool isCreated() const;
 
+        GLuint getHandle() const;
+
     protected:
         bool created = false;
 
@@ -53,4 +59,6 @@ namespace GDT
     private:
         uint width, height;
     };
+#ifdef GDT_NAMESPACE
 }
+#endif
