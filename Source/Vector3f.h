@@ -25,6 +25,8 @@ namespace GDT
         /* Operator overloads */
         bool operator==(const Vector3f& v) const;
         bool operator!=(const Vector3f& v) const;
+        float& operator[](size_t pos);
+        const float& operator[](size_t pos) const;
 
         Vector3f& operator+=(const Vector3f& v);
         Vector3f& operator-=(const Vector3f& v);
