@@ -16,6 +16,7 @@ namespace GDT
 
         /* Core */
         Matrix4f();
+        Matrix4f(Vector3f t, Vector3f b, Vector3f n);
 
         void setIdentity();
         void translate(const Vector3f& v);

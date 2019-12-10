@@ -22,6 +22,15 @@ namespace GDT
         setIdentity();
     }
 
+    Matrix4f::Matrix4f(Vector3f t, Vector3f b, Vector3f n) :
+        Matrix4f(t.x, b.x, n.x, 0,
+                 t.y, b.y, n.y, 0,
+                 t.z, b.z, n.z, 0,
+                 0, 0, 0, 1)
+    {
+
+    }
+
     Matrix4f::Matrix4f(float m0, float m1, float m2, float m3,
         float m4, float m5, float m6, float m7,
         float m8, float m9, float m10, float m11,
