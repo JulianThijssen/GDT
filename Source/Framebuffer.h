@@ -33,6 +33,12 @@ namespace GDT
         void bind(BindTarget bindTarget) const;
         void release() const;
 
+        void clearColorBuffer(unsigned int drawBuffer, float r, float g, float b, float a);
+        void clearColorBuffer(unsigned int drawBuffer, int r, int g, int b, int a);
+        void clearColorBuffer(unsigned int drawBuffer, uint r, uint g, uint b, uint a);
+        void clearDepthBuffer(float depthValue);
+        void clearStencilBuffer(int stencilValue);
+
         void addColorTexture(unsigned int colorAttachment, Texture2D texture);
         void addDepthTexture(Texture2D texture);
         void addDepthStencilTexture(Texture2D texture);

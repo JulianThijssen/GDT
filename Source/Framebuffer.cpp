@@ -33,6 +33,34 @@ namespace GDT
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }
 
+    void Framebuffer::clearColorBuffer(unsigned int drawBuffer, float r, float g, float b, float a)
+    {
+        float colorValues[4] = { r, g, b, a };
+        glClearBufferfv(GL_COLOR, GL_DRAW_BUFFER + drawBuffer, colorValues);
+    }
+
+    void Framebuffer::clearColorBuffer(unsigned int drawBuffer, int r, int g, int b, int a)
+    {
+        int colorValues[4] = { r, g, b, a };
+        glClearBufferiv(GL_COLOR, GL_DRAW_BUFFER + drawBuffer, colorValues);
+    }
+
+    void Framebuffer::clearColorBuffer(unsigned int drawBuffer, uint r, uint g, uint b, uint a)
+    {
+        uint colorValues[4] = { r, g, b, a };
+        glClearBufferuiv(GL_COLOR, GL_DRAW_BUFFER + drawBuffer, colorValues);
+    }
+
+    void Framebuffer::clearDepthBuffer(float depthValue)
+    {
+        glClearBufferfv(GL_DEPTH, 0, &depthValue);
+    }
+
+    void Framebuffer::clearStencilBuffer(int stencilValue)
+    {
+        glClearBufferiv(GL_STENCIL, 0, &stencilValue);
+    }
+
     void Framebuffer::addColorTexture(unsigned int colorAttachment, Texture2D texture) {
         if (colorAttachment > MAX_COLOR_ATTACHMENTS) {
             std::cout << "Tried to add color attachment with index greater than 8." << std::endl;
