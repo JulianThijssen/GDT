@@ -28,3 +28,21 @@ set(BASE
     ${DIR}/OpenGL.h
     PARENT_SCOPE
 )
+
+set(LIBRARY_PUBLIC_HEADERS
+    ${DIR}/Window.h
+    ${DIR}/Shader.h
+    ${DIR}/Texture.h
+    ${DIR}/TextureUnit.h
+    ${DIR}/Framebuffer.h
+    ${DIR}/Vector2f.h
+    ${DIR}/Vector3f.h
+    ${DIR}/Vector4f.h
+    ${DIR}/Matrix4f.h
+    ${DIR}/Math.h
+    ${DIR}/File.h
+    ${DIR}/Input.h
+    ${DIR}/Exception.h
+    ${DIR}/OpenGL.h
+    PARENT_SCOPE
+)
