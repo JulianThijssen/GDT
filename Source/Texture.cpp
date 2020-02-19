@@ -67,6 +67,16 @@ namespace GDT
 
     }
 
+    uint Texture2D::getWidth() const
+    {
+        return width;
+    }
+
+    uint Texture2D::getHeight() const
+    {
+        return height;
+    }
+
     void Texture2D::setData(uint width, uint height, GLint internalFormat, GLenum format, GLenum type, const void* data)
     {
         if (!isCreated()) return;

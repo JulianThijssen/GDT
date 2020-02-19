@@ -53,6 +53,8 @@ namespace GDT
     {
     public:
         Texture2D();
+        uint getWidth() const;
+        uint getHeight() const;
         void setData(uint width, uint height, GLint internalFormat, GLenum format, GLenum type, const void* data);
         void setWrapping(Wrapping sWrapping, Wrapping tWrapping);
 
