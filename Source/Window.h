@@ -70,7 +70,9 @@ namespace GDT
         uint _width, _height;
         int _fbWidth, _fbHeight;
 
+        // Window properties
         GlSettings _glSettings = { 3, 3, true };
+        bool _resizable;
 
         // Non-owning lists of input listener pointer references
         std::vector<KeyListener*> keyListeners;

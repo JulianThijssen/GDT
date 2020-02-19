@@ -77,7 +77,7 @@ namespace GDT
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, _glSettings.minorVersion);
         glfwWindowHint(GLFW_OPENGL_PROFILE, _glSettings.coreProfile ? GLFW_OPENGL_CORE_PROFILE : GLFW_OPENGL_COMPAT_PROFILE);
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
-        glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
+        glfwWindowHint(GLFW_RESIZABLE, _resizable);
 
         window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
 
@@ -140,7 +140,7 @@ namespace GDT
 
     void Window::setResizable(bool resizable)
     {
-        glfwWindowHint(GLFW_RESIZABLE, resizable);
+        _resizable = resizable;
     }
 
     void Window::lockCursor(bool lock)
