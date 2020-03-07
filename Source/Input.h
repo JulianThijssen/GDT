@@ -23,6 +23,12 @@ namespace GDT
         virtual void onMouseClicked(int button, int mods) = 0;
         virtual void onMouseReleased(int button, int mods) = 0;
     };
+
+    class MouseScrollListener
+    {
+    public:
+        virtual void onMouseScrolled(float xOffset, float yOffset) = 0;
+    };
 #ifdef GDT_NAMESPACE
 }
 #endif

@@ -59,10 +59,12 @@ namespace GDT
         void addKeyListener(KeyListener* keyListener);
         void addMouseMoveListener(MouseMoveListener* mouseMoveListener);
         void addMouseClickListener(MouseClickListener* mouseClickListener);
+        void addMouseScrollListener(MouseScrollListener* mouseScrollListener);
 
         void onKeyInput(int key, int action, int mods);
         void onMouseMove(float x, float y);
         void onMouseButton(int button, int action, int mods);
+        void onMouseScroll(float xOffset, float yOffset);
 
     private:
         GLFWwindow* window;
@@ -78,6 +80,7 @@ namespace GDT
         std::vector<KeyListener*> keyListeners;
         std::vector<MouseMoveListener*> mouseMoveListeners;
         std::vector<MouseClickListener*> mouseClickListeners;
+        std::vector<MouseScrollListener*> mouseScrollListeners;
     };
 #ifdef GDT_NAMESPACE
 }

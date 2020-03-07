@@ -52,6 +52,12 @@ namespace GDT
         w->onMouseButton(button, action, mods);
     }
 
+    void onMouseScrollEvent(GLFWwindow* window, double xOffset, double yOffset)
+    {
+        Window* w = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
+        w->onMouseScroll((float)xOffset, (float)yOffset);
+    }
+
     uint Window::getWidth() const
     {
         return _width;
@@ -98,6 +104,7 @@ namespace GDT
         glfwSetKeyCallback(window, onKeyEvent);
         glfwSetCursorPosCallback(window, onMouseMoveEvent);
         glfwSetMouseButtonCallback(window, onMouseButtonEvent);
+        glfwSetScrollCallback(window, onMouseScrollEvent);
     }
 
     void Window::pollEvents()
@@ -171,6 +178,11 @@ namespace GDT
         mouseClickListeners.push_back(mouseClickListener);
     }
 
+    void Window::addMouseScrollListener(MouseScrollListener* mouseScrollListener)
+    {
+        mouseScrollListeners.push_back(mouseScrollListener);
+    }
+
     void Window::onKeyInput(int key, int action, int mods)
     {
         //keyListeners.erase(std::remove_if(keyListeners.begin(), keyListeners.end(),
@@ -203,6 +215,15 @@ namespace GDT
                 listener->onMouseReleased(button, mods);
         }
     }
+
+    void Window::onMouseScroll(float xOffset, float yOffset)
+    {
+        for (MouseScrollListener* listener : mouseScrollListeners)
+        {
+            listener->onMouseScrolled(xOffset, yOffset);
+        }
+    }
+
 #ifdef GDT_NAMESPACE
 }
 #endif
