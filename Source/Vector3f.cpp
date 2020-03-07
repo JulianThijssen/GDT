@@ -9,6 +9,9 @@
 namespace GDT
 {
 #endif
+    const Vector3f Vector3f::Zero = Vector3f(0, 0, 0);
+    const Vector3f Vector3f::Up = Vector3f(0, 1, 0);
+
     Vector3f::Vector3f()
     {
         set(0, 0, 0);

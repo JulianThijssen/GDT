@@ -9,6 +9,9 @@ namespace GDT
     class Vector3f
     {
     public:
+        const static Vector3f Zero;
+        const static Vector3f Up;
+
         float x, y, z;
 
         Vector3f();
