@@ -45,15 +45,20 @@ namespace GDT
         return _isCompiled;
     }
 
+    bool Shader::loadFromSource(const char* source)
+    {
+        create();
+        glShaderSource(_handle, 1, &source, nullptr);
+
+        return true;
+    }
+
     bool Shader::loadFromFile(std::string path)
     {
         std::string source = loadFile(path);
         const char* cSource = source.c_str();
 
-        create();
-        glShaderSource(_handle, 1, &cSource, nullptr);
-
-        return true;
+        return loadFromSource(cSource);
     }
 
     void Shader::create()
@@ -134,7 +139,23 @@ namespace GDT
 
     }
 
-    void ShaderProgram::addShader(ShaderType type, std::string path)
+    void ShaderProgram::addShaderFromSource(ShaderType type, const char* source)
+    {
+        Shader shader(type);
+
+        try
+        {
+            shader.loadFromSource(source);
+        }
+        catch (const FileNotFoundException& e)
+        {
+            throw ShaderLoadingException(e.what());
+        }
+
+        attach(shader);
+    }
+
+    void ShaderProgram::addShaderFromFile(ShaderType type, std::string path)
     {
         Shader shader(type);
 

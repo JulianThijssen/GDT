@@ -48,6 +48,8 @@ namespace GDT
          */
         bool isCompiled() const;
 
+        bool loadFromSource(const char* source);
+
         /**
          * Loads shader source from the given file path
          *
@@ -83,7 +85,8 @@ namespace GDT
     public:
         ShaderProgram();
 
-        void addShader(ShaderType type, std::string path);
+        void addShaderFromSource(ShaderType type, const char* source);
+        void addShaderFromFile(ShaderType type, std::string path);
         void build();
         std::string getError();
 
