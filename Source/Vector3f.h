@@ -18,40 +18,40 @@ namespace GDT
         Vector3f(float x, float y, float z) : x(x), y(y), z(z) {}
         Vector3f(float xyz) : x(xyz), y(xyz), z(xyz) {}
 
-        void set(float x, float y, float z);
-        void set(const Vector3f& v);
-        Vector3f& normalize();
+        inline void set(float x, float y, float z);
+        inline void set(const Vector3f& v);
+        inline Vector3f& normalize();
 
-        float sqrMagnitude() const;
-        float length() const;
+        inline float sqrMagnitude() const;
+        inline float length() const;
 
         /* Operator overloads */
-        bool operator==(const Vector3f& v) const;
-        bool operator!=(const Vector3f& v) const;
-        float& operator[](size_t pos);
-        const float& operator[](size_t pos) const;
+        inline bool operator==(const Vector3f& v) const;
+        inline bool operator!=(const Vector3f& v) const;
+        inline float& operator[](size_t pos);
+        inline const float& operator[](size_t pos) const;
 
         inline Vector3f& operator+=(const Vector3f& v);
-        Vector3f& operator-=(const Vector3f& v);
-        Vector3f& operator*=(const Vector3f& v);
-        Vector3f& operator/=(const Vector3f& v);
+        inline Vector3f& operator-=(const Vector3f& v);
+        inline Vector3f& operator*=(const Vector3f& v);
+        inline Vector3f& operator/=(const Vector3f& v);
 
-        Vector3f& operator+=(const float f);
-        Vector3f& operator-=(const float f);
-        Vector3f& operator*=(const float f);
-        Vector3f& operator/=(const float f);
+        inline Vector3f& operator+=(const float f);
+        inline Vector3f& operator-=(const float f);
+        inline Vector3f& operator*=(const float f);
+        inline Vector3f& operator/=(const float f);
 
-        Vector3f operator+(const Vector3f& v) const;
-        Vector3f operator-(const Vector3f& v) const;
-        Vector3f operator*(const Vector3f& v) const;
-        Vector3f operator/(const Vector3f& v) const;
+        inline Vector3f operator+(const Vector3f& v) const;
+        inline Vector3f operator-(const Vector3f& v) const;
+        inline Vector3f operator*(const Vector3f& v) const;
+        inline Vector3f operator/(const Vector3f& v) const;
 
-        Vector3f operator+(const float f) const;
-        Vector3f operator-(const float f) const;
-        Vector3f operator*(const float f) const;
-        Vector3f operator/(const float f) const;
+        inline Vector3f operator+(const float f) const;
+        inline Vector3f operator-(const float f) const;
+        inline Vector3f operator*(const float f) const;
+        inline Vector3f operator/(const float f) const;
 
-        Vector3f operator-() const;
+        inline Vector3f operator-() const;
     };
 
     float dot(const Vector3f& v1, const Vector3f& v2);
