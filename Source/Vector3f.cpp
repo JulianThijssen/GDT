@@ -12,38 +12,6 @@ namespace GDT
     const Vector3f Vector3f::Zero = Vector3f(0, 0, 0);
     const Vector3f Vector3f::Up = Vector3f(0, 1, 0);
 
-    Vector3f::Vector3f(float xyz)
-    {
-        set(xyz, xyz, xyz);
-    }
-
-    void Vector3f::set(float x, float y, float z)
-    {
-        this->x = x;
-        this->y = y;
-        this->z = z;
-    }
-
-    void Vector3f::set(const Vector3f& v)
-    {
-        set(v.x, v.y, v.z);
-    }
-
-    Vector3f& Vector3f::normalize()
-    {
-        float il = 1 / length();
-
-        x *= il;
-        y *= il;
-        z *= il;
-        return *this;
-    }
-
-    float Vector3f::length() const
-    {
-        return sqrt(sqrMagnitude());
-    }
-
     float dot(const Vector3f& v1, const Vector3f& v2)
     {
         return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;

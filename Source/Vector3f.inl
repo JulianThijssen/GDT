@@ -1,5 +1,37 @@
 #include <string>
 
+void Vector3f::set(float x, float y, float z)
+{
+    this->x = x;
+    this->y = y;
+    this->z = z;
+}
+
+void Vector3f::set(const Vector3f& v)
+{
+    set(v.x, v.y, v.z);
+}
+
+Vector3f& Vector3f::normalize()
+{
+    float il = 1 / length();
+
+    x *= il;
+    y *= il;
+    z *= il;
+    return *this;
+}
+
+float Vector3f::sqrMagnitude() const
+{
+    return x * x + y * y + z * z;
+}
+
+float Vector3f::length() const
+{
+    return sqrt(sqrMagnitude());
+}
+
 /* Operator overloads */
 bool Vector3f::operator==(const Vector3f& v) const
 {

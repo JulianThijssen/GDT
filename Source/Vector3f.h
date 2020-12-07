@@ -16,13 +16,13 @@ namespace GDT
 
         Vector3f() : x(0), y(0), z(0) {}
         Vector3f(float x, float y, float z) : x(x), y(y), z(z) {}
-        Vector3f(float xyz);
+        Vector3f(float xyz) : x(xyz), y(xyz), z(xyz) {}
 
         void set(float x, float y, float z);
         void set(const Vector3f& v);
         Vector3f& normalize();
 
-        inline float sqrMagnitude() const { return x * x + y * y + z * z; }
+        float sqrMagnitude() const;
         float length() const;
 
         /* Operator overloads */
