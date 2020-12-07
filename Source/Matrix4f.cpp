@@ -2,7 +2,7 @@
 
 #include "Vector3f.h"
 #include "Vector4f.h"
-#include "Math.h"
+#include "Maths.h"
 
 #include <cmath>
 #include <sstream>

@@ -13,13 +13,14 @@ set(BASE
     ${DIR}/Vector2f.h
     ${DIR}/Vector2f.cpp
     ${DIR}/Vector3f.h
+    ${DIR}/Vector3f.inl
     ${DIR}/Vector3f.cpp
     ${DIR}/Vector4f.h
     ${DIR}/Vector4f.cpp
     ${DIR}/Matrix4f.h
     ${DIR}/Matrix4f.cpp
-    ${DIR}/Math.h
-    ${DIR}/Math.cpp
+    ${DIR}/Maths.h
+    ${DIR}/Maths.cpp
     ${DIR}/File.h
     ${DIR}/File.cpp
     ${DIR}/Input.h
@@ -37,9 +38,10 @@ set(LIBRARY_PUBLIC_HEADERS
     ${DIR}/Framebuffer.h
     ${DIR}/Vector2f.h
     ${DIR}/Vector3f.h
+    ${DIR}/Vector3f.inl
     ${DIR}/Vector4f.h
     ${DIR}/Matrix4f.h
-    ${DIR}/Math.h
+    ${DIR}/Maths.h
     ${DIR}/File.h
     ${DIR}/Input.h
     ${DIR}/Exception.h

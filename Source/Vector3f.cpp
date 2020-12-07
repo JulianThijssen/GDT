@@ -1,6 +1,6 @@
 #include "Vector3f.h"
 
-#include "Math.h"
+#include "Maths.h"
 
 #include <string>
 #include <cmath>
