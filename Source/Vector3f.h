@@ -14,15 +14,15 @@ namespace GDT
 
         float x, y, z;
 
-        Vector3f();
-        Vector3f(float x, float y, float z);
+        Vector3f() : x(0), y(0), z(0) {}
+        Vector3f(float x, float y, float z) : x(x), y(y), z(z) {}
         Vector3f(float xyz);
 
         void set(float x, float y, float z);
         void set(const Vector3f& v);
         Vector3f& normalize();
 
-        float sqrMagnitude() const;
+        inline float sqrMagnitude() const { return x * x + y * y + z * z; }
         float length() const;
 
         /* Operator overloads */
@@ -31,7 +31,7 @@ namespace GDT
         float& operator[](size_t pos);
         const float& operator[](size_t pos) const;
 
-        Vector3f& operator+=(const Vector3f& v);
+        inline Vector3f& operator+=(const Vector3f& v);
         Vector3f& operator-=(const Vector3f& v);
         Vector3f& operator*=(const Vector3f& v);
         Vector3f& operator/=(const Vector3f& v);
@@ -46,10 +46,10 @@ namespace GDT
         Vector3f operator*(const Vector3f& v) const;
         Vector3f operator/(const Vector3f& v) const;
 
-        Vector3f operator+(const float f);
-        Vector3f operator-(const float f);
-        Vector3f operator*(const float f);
-        Vector3f operator/(const float f);
+        Vector3f operator+(const float f) const;
+        Vector3f operator-(const float f) const;
+        Vector3f operator*(const float f) const;
+        Vector3f operator/(const float f) const;
 
         Vector3f operator-() const;
     };
@@ -65,3 +65,5 @@ namespace GDT
 #ifdef GDT_NAMESPACE
 }
 #endif
+
+#include "Vector3f.inl"
