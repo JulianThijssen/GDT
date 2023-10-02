@@ -10,6 +10,8 @@ set(BASE
     ${DIR}/TextureUnit.h
     ${DIR}/Framebuffer.h
     ${DIR}/Framebuffer.cpp
+    ${DIR}/DrawBuffer.h
+    ${DIR}/DrawBuffer.cpp
     ${DIR}/Vector2f.h
     ${DIR}/Vector2f.cpp
     ${DIR}/Vector3f.h
@@ -37,6 +39,7 @@ set(LIBRARY_PUBLIC_HEADERS
     ${DIR}/Texture.h
     ${DIR}/TextureUnit.h
     ${DIR}/Framebuffer.h
+    ${DIR}/DrawBuffer.h
     ${DIR}/Vector2f.h
     ${DIR}/Vector3f.h
     ${DIR}/Vector3f.inl
