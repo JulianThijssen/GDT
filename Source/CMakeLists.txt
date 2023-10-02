@@ -16,6 +16,7 @@ set(BASE
     ${DIR}/Vector3f.inl
     ${DIR}/Vector3f.cpp
     ${DIR}/Vector4f.h
+    ${DIR}/Vector4f.inl
     ${DIR}/Vector4f.cpp
     ${DIR}/Matrix4f.h
     ${DIR}/Matrix4f.cpp
@@ -40,6 +41,7 @@ set(LIBRARY_PUBLIC_HEADERS
     ${DIR}/Vector3f.h
     ${DIR}/Vector3f.inl
     ${DIR}/Vector4f.h
+    ${DIR}/Vector4f.inl
     ${DIR}/Matrix4f.h
     ${DIR}/Maths.h
     ${DIR}/File.h

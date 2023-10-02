@@ -11,7 +11,14 @@ namespace GDT
     class Vector4f
     {
     public:
-        float x, y, z, w;
+        const static Vector4f Zero;
+        const static Vector4f Up;
+
+        union
+        {
+            struct { float x, y, z, w; };
+            float a[4];
+        };
 
         Vector4f();
         Vector4f(float x, float y, float z, float w);
@@ -19,40 +26,40 @@ namespace GDT
         Vector4f(float xyz, float w);
         Vector4f(Vector3f v, float w);
 
-        void set(float x, float y, float z, float w);
-        void set(const Vector4f& v);
-        Vector4f& normalize();
+        inline void set(float x, float y, float z, float w);
+        inline void set(const Vector4f& v);
+        inline Vector4f& normalize();
 
-        float sqrMagnitude() const;
-        float length() const;
+        inline float sqrMagnitude() const;
+        inline float length() const;
 
         /* Operator overloads */
-        bool operator==(const Vector4f& v) const;
-        bool operator!=(const Vector4f& v) const;
-        float& operator[](size_t pos);
-        const float& operator[](size_t pos) const;
+        inline bool operator==(const Vector4f& v) const;
+        inline bool operator!=(const Vector4f& v) const;
+        inline float& operator[](size_t pos);
+        inline const float& operator[](size_t pos) const;
 
-        Vector4f& operator+=(const Vector4f& v);
-        Vector4f& operator-=(const Vector4f& v);
-        Vector4f& operator*=(const Vector4f& v);
-        Vector4f& operator/=(const Vector4f& v);
+        inline Vector4f& operator+=(const Vector4f& v);
+        inline Vector4f& operator-=(const Vector4f& v);
+        inline Vector4f& operator*=(const Vector4f& v);
+        inline Vector4f& operator/=(const Vector4f& v);
 
-        Vector4f& operator+=(const float f);
-        Vector4f& operator-=(const float f);
-        Vector4f& operator*=(const float f);
-        Vector4f& operator/=(const float f);
+        inline Vector4f& operator+=(const float f);
+        inline Vector4f& operator-=(const float f);
+        inline Vector4f& operator*=(const float f);
+        inline Vector4f& operator/=(const float f);
 
-        Vector4f operator+(const Vector4f& v) const;
-        Vector4f operator-(const Vector4f& v) const;
-        Vector4f operator*(const Vector4f& v) const;
-        Vector4f operator/(const Vector4f& v) const;
+        inline Vector4f operator+(const Vector4f& v) const;
+        inline Vector4f operator-(const Vector4f& v) const;
+        inline Vector4f operator*(const Vector4f& v) const;
+        inline Vector4f operator/(const Vector4f& v) const;
 
-        Vector4f operator+(const float f);
-        Vector4f operator-(const float f);
-        Vector4f operator*(const float f);
-        Vector4f operator/(const float f);
+        inline Vector4f operator+(const float f);
+        inline Vector4f operator-(const float f);
+        inline Vector4f operator*(const float f);
+        inline Vector4f operator/(const float f);
 
-        Vector4f operator-() const;
+        inline Vector4f operator-() const;
     };
 
     float dot(const Vector4f& v1, const Vector4f& v2);
@@ -67,3 +74,5 @@ namespace GDT
 #ifdef GDT_NAMESPACE
 }
 #endif
+
+#include "Vector4f.inl"
