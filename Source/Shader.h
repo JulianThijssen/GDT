@@ -19,7 +19,7 @@ namespace GDT
     class Vector3f;
     class Matrix4f;
 
-    enum ShaderType
+    enum class ShaderType
     {
         VERTEX,
         GEOMETRY,

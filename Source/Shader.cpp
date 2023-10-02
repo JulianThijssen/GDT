@@ -66,11 +66,11 @@ namespace GDT
         GLenum glType;
         switch (_type)
         {
-        case VERTEX: glType = GL_VERTEX_SHADER; break;
-        case FRAGMENT: glType = GL_FRAGMENT_SHADER; break;
-        case GEOMETRY: glType = GL_GEOMETRY_SHADER; break;
+        case ShaderType::VERTEX: glType = GL_VERTEX_SHADER; break;
+        case ShaderType::FRAGMENT: glType = GL_FRAGMENT_SHADER; break;
+        case ShaderType::GEOMETRY: glType = GL_GEOMETRY_SHADER; break;
 #ifdef GL_VERSION_4_3
-        case COMPUTE: glType = GL_COMPUTE_SHADER; break;
+        case ShaderType::COMPUTE: glType = GL_COMPUTE_SHADER; break;
 #endif
         }
 
@@ -111,9 +111,9 @@ namespace GDT
         std::string prefix;
         switch (_type)
         {
-        case VERTEX: prefix = "Vertex shader info log:\n"; break;
-        case GEOMETRY: prefix = "Geometry shader info log:\n"; break;
-        case FRAGMENT: prefix = "Fragment shader info log:\n"; break;
+        case ShaderType::VERTEX: prefix = "Vertex shader info log:\n"; break;
+        case ShaderType::GEOMETRY: prefix = "Geometry shader info log:\n"; break;
+        case ShaderType::FRAGMENT: prefix = "Fragment shader info log:\n"; break;
 #ifdef OPENGL_VERSION_4_3
         case COMPUTE: prefix = "Compute shader info log:\n"; break;
 #endif
