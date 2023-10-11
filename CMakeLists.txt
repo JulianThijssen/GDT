@@ -12,7 +12,7 @@ if(GDT_NAMESPACE)
 endif()
 
 # Set C++11 as the language standard
-set (CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 11)
 
 # Automatically install in VS
 set(CMAKE_VS_INCLUDE_INSTALL_TO_DEFAULT_BUILD 1)
@@ -24,7 +24,7 @@ set(CMAKE_DEBUG_POSTFIX d)
 # PROJECT
 #--------------------------------------------------------------------
 # Sets the name of the project for our build
-project ("GDT" LANGUAGES C CXX)
+project ("GDT" LANGUAGES C CXX VERSION 1.0.0)
 
 # Set a default installation folder if not changed by the user
 IF(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
@@ -53,14 +53,34 @@ set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "${LIBRARY_PUBLIC
 target_link_libraries(${PROJECT_NAME} PUBLIC glfw)
 
 #--------------------------------------------------------------------
+# CONFIG
+#--------------------------------------------------------------------
+# Write a basic config version file
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+    "GDTConfigVersion.cmake"
+    VERSION ${PROJECT_VERSION}
+    COMPATIBILITY AnyNewerVersion)
+
+#--------------------------------------------------------------------
 # INSTALL
 #--------------------------------------------------------------------
 # Install artifacts to output directory
 install(TARGETS ${PROJECT_NAME}
+        EXPORT ${PROJECT_NAME}Targets
         ARCHIVE DESTINATION lib
         LIBRARY DESTINATION lib
         PUBLIC_HEADER DESTINATION include/GDT
         RUNTIME DESTINATION bin
 )
 
+# Install config files
+install(EXPORT ${PROJECT_NAME}Targets
+    FILE ${PROJECT_NAME}Targets.cmake
+    DESTINATION lib/cmake/GDT)
+    
+install(FILES "${PROJECT_NAME}Config.cmake" "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+    DESTINATION lib/cmake/GDT)
+
+# Install KHR includes
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/ThirdParty/KHR/include/KHR DESTINATION include)
