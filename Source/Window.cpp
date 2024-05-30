@@ -34,6 +34,12 @@ namespace GDT
         }
     }
 
+    void onResizeEvent(GLFWwindow* window, int width, int height)
+    {
+        Window* w = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
+        w->onResize(width, height);
+    }
+
     void onKeyEvent(GLFWwindow* window, int key, int scancode, int action, int mods)
     {
         Window* w = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
@@ -101,6 +107,7 @@ namespace GDT
         glfwSwapInterval(1);
 
         glfwSetWindowUserPointer(window, this);
+        glfwSetWindowSizeCallback(window, onResizeEvent);
         glfwSetKeyCallback(window, onKeyEvent);
         glfwSetCursorPosCallback(window, onMouseMoveEvent);
         glfwSetMouseButtonCallback(window, onMouseButtonEvent);
@@ -163,6 +170,11 @@ namespace GDT
         glfwSwapInterval(enable ? 1 : 0);
     }
 
+    void Window::addResizeListener(ResizeListener* resizeListener)
+    {
+        resizeListeners.push_back(resizeListener);
+    }
+
     void Window::addKeyListener(KeyListener* keyListener)
     {
         keyListeners.push_back(keyListener);
@@ -181,6 +193,14 @@ namespace GDT
     void Window::addMouseScrollListener(MouseScrollListener* mouseScrollListener)
     {
         mouseScrollListeners.push_back(mouseScrollListener);
+    }
+
+    void Window::onResize(int width, int height)
+    {
+        for (ResizeListener* listener : resizeListeners)
+        {
+            listener->onWindowResized(width, height);
+        }
     }
 
     void Window::onKeyInput(int key, int action, int mods)

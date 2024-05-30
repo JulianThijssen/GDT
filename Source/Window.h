@@ -14,6 +14,12 @@ struct GLFWwindow;
 namespace GDT
 {
 #endif
+    class ResizeListener
+    {
+    public:
+        virtual void onWindowResized(int width, int height) = 0;
+    };
+
     class WindowCreationException : public std::exception
     {
     public:
@@ -56,11 +62,13 @@ namespace GDT
         void lockCursor(bool lock);
         void enableVSync(bool enable);
 
+        void addResizeListener(ResizeListener* resizeListener);
         void addKeyListener(KeyListener* keyListener);
         void addMouseMoveListener(MouseMoveListener* mouseMoveListener);
         void addMouseClickListener(MouseClickListener* mouseClickListener);
         void addMouseScrollListener(MouseScrollListener* mouseScrollListener);
 
+        void onResize(int width, int height);
         void onKeyInput(int key, int action, int mods);
         void onMouseMove(float x, float y);
         void onMouseButton(int button, int action, int mods);
@@ -77,6 +85,7 @@ namespace GDT
         bool _resizable;
 
         // Non-owning lists of input listener pointer references
+        std::vector<ResizeListener*> resizeListeners;
         std::vector<KeyListener*> keyListeners;
         std::vector<MouseMoveListener*> mouseMoveListeners;
         std::vector<MouseClickListener*> mouseClickListeners;
