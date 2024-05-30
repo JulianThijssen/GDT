@@ -12,6 +12,23 @@ namespace GDT
     const Vector3f Vector3f::Zero = Vector3f(0, 0, 0);
     const Vector3f Vector3f::Up = Vector3f(0, 1, 0);
 
+    constexpr float epsilon = 0.00001f;
+
+    Vector3f& Vector3f::normalize()
+    {
+        float len = length();
+
+        float invl = 0;
+        if (len > epsilon)
+            invl = 1.0f / length();
+
+        x *= invl;
+        y *= invl;
+        z *= invl;
+
+        return *this;
+    }
+
     float dot(const Vector3f& v1, const Vector3f& v2)
     {
         return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
@@ -27,9 +44,11 @@ namespace GDT
 
     Vector3f normalize(const Vector3f& v)
     {
-        float l = v.length();
-
-        return Vector3f(v.x / l, v.y / l, v.z / l);
+        float len = v.length();
+        if (len > epsilon)
+            return v / len;
+        
+        return Vector3f::Zero;
     }
 
     Vector3f pow(const Vector3f& v, float exponent)

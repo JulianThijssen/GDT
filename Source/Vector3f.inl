@@ -12,16 +12,6 @@ void Vector3f::set(const Vector3f& v)
     set(v.x, v.y, v.z);
 }
 
-Vector3f& Vector3f::normalize()
-{
-    float il = 1 / length();
-
-    x *= il;
-    y *= il;
-    z *= il;
-    return *this;
-}
-
 float Vector3f::sqrMagnitude() const
 {
     return x * x + y * y + z * z;
@@ -124,9 +114,10 @@ Vector3f& Vector3f::operator*=(const float f)
 
 Vector3f& Vector3f::operator/=(const float f)
 {
-    x /= f;
-    y /= f;
-    z /= f;
+    float invf = 1.0f / f;
+    x *= invf;
+    y *= invf;
+    z *= invf;
     return *this;
 }
 
@@ -169,7 +160,8 @@ Vector3f Vector3f::operator*(const float f) const
 
 Vector3f Vector3f::operator/(const float f) const
 {
-    return Vector3f(x / f, y / f, z / f);
+    float invf = 1.0f / f;
+    return Vector3f(x * invf, y * invf, z * invf);
 }
 
 Vector3f Vector3f::operator-() const
