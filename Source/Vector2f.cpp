@@ -165,6 +165,11 @@ namespace GDT
         return Vector2f(-x, -y);
     }
 
+    float distance(const Vector2f& v1, const Vector2f& v2)
+    {
+        return (v2 - v1).length();
+    }
+
     float dot(const Vector2f& v1, const Vector2f& v2)
     {
         return v1.x * v2.x + v1.y * v2.y;

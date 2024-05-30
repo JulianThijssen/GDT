@@ -49,6 +49,7 @@ namespace GDT
         Vector2f operator-() const;
     };
 
+    float distance(const Vector2f& v1, const Vector2f& v2);
     float dot(const Vector2f& v1, const Vector2f& v2);
     Vector2f normalize(const Vector2f& v);
     Vector2f pow(const Vector2f& v, float exponent);
