@@ -5,6 +5,7 @@
 #include "Maths.h"
 
 #include <cmath>
+#include <iomanip>
 #include <sstream>
 
 #ifdef GDT_NAMESPACE
@@ -281,12 +282,14 @@ namespace GDT
         return d;
     }
 
+#define __ << std::right << std::setw(5) <<
     std::ostream& operator<<(std::ostream& os, const Matrix4f& m)
     {
-        os << "[" << m[0] << ", " << m[4] << ", " << m[8] << ", " << m[12] << "]\n";
-        os << "[" << m[1] << ", " << m[5] << ", " << m[9] << ", " << m[13] << "]\n";
-        os << "[" << m[2] << ", " << m[6] << ", " << m[10] << ", " << m[14] << "]\n";
-        os << "[" << m[3] << ", " << m[7] << ", " << m[11] << ", " << m[15] << "]\n";
+        os << std::fixed << std::setprecision(2);
+        os << "[" __ m[0] << ", " __ m[4] << ", " __ m[8] << ", " __ m[12] << "]\n";
+        os << "[" __ m[1] << ", " __ m[5] << ", " __ m[9] << ", " __ m[13] << "]\n";
+        os << "[" __ m[2] << ", " __ m[6] << ", " __ m[10] << ", " __ m[14] << "]\n";
+        os << "[" __ m[3] << ", " __ m[7] << ", " __ m[11] << ", " __ m[15] << "]\n";
 
         return os;
     }

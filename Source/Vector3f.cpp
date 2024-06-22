@@ -4,6 +4,7 @@
 
 #include <string>
 #include <cmath>
+#include <iomanip>
 
 #ifdef GDT_NAMESPACE
 namespace GDT
@@ -66,9 +67,10 @@ namespace GDT
         return Math::max(v.x, Math::max(v.y, v.z));
     }
 
+#define __ << std::right << std::setw(5) <<
     std::ostream& operator<<(std::ostream& os, const Vector3f& v)
     {
-        os << '(' << v.x << ", " << v.y << ", " << v.z << ')';
+        os << std::fixed << std::setprecision(2) << '(' __ v.x << ", " __ v.y << ", " __ v.z << ')';
         return os;
     }
 #ifdef GDT_NAMESPACE
