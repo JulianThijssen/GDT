@@ -53,7 +53,7 @@ namespace GDT
     float determinant(const Matrix4f& m);
     Matrix4f inverse(const Matrix4f& m);
 
-    std::ostream& operator<<(std::ostream& os, const Vector3f& v);
+    std::ostream& operator<<(std::ostream& os, const Matrix4f& m);
 #ifdef GDT_NAMESPACE
 }
 #endif
